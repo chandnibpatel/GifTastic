@@ -1,0 +1,53 @@
+body{
+    background-color: black;
+}
+#header {
+	background-image: linear-gradient(to right,black,indigo,blue,indigo,black); 
+	color: #ffffff;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 15px;
+    font-family: 'Noto Serif SC', serif;
+}
+#topImageL {
+	width: 16%;
+	float: left;
+	margin-left: 20px;
+}
+#topImageR {
+	width: 20%;
+	float: right;
+	margin-right: 20px;
+}
+label {
+	font-size: 18px;
+}
+
+#emotionSearch {
+	margin: 2%;
+	text-align: center;
+    font-family: 'Noto Serif SC', serif;
+    color: white;
+}
+input{
+    border: 2px solid orange;
+}
+button{
+    margin: 5px;
+}
+#gifArea {
+	clear: both;
+	display: inline;
+	/* flex-wrap: wrap; */
+}
+.newEmotion{
+    position: relative;
+    width: 25%;
+    display: inline-block;
+    margin: 2%;
+}
+.imgEmotion{
+    width: 100%;
+    height: 2in;
+}
+
