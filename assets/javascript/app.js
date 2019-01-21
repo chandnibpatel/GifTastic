@@ -28,7 +28,9 @@ var emotions = ["Shocked", "Excited", "Hungry", "Sick"];
             var emotionImg = $("<img>");
             emotionImg.addClass("imgEmotion");
             console.log(response.data[i].images.fixed_width.url);
-            emotionImg.attr("src", response.data[i].images.fixed_width.url);
+            emotionImg.attr("src", response.data[i].images.fixed_width_still.url);
+            emotionImg.attr("data-still-url",response.data[i].images.fixed_width_still.url);
+            emotionImg.attr("data-animated-url",response.data[i].images.fixed_width.url);
 
             new_Emotion.append(emotionRat);  
             new_Emotion.append(emotionImg);
@@ -80,6 +82,17 @@ var emotions = ["Shocked", "Excited", "Hungry", "Sick"];
 
       // Adding click event listeners to all elements with a class of "emotion"
       $(document).on("click", ".emotion", displayEmotionInfo);
-
+      $(document).on("click", ".imgEmotion", startStopGif);
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
+
+      function startStopGif()
+      {
+           if ($(this).attr("src")===$(this).attr("data-still-url"))
+           {
+            $(this).attr("src",$(this).attr("data-animated-url"))
+           }else if ($(this).attr("src")===$(this).attr("data-animated-url"))
+           {
+            $(this).attr("src",$(this).attr("data-still-url"))
+           }
+      }

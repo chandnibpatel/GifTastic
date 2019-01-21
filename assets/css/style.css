@@ -45,9 +45,11 @@ button{
     width: 25%;
     display: inline-block;
     margin: 2%;
+    color: white;
 }
 .imgEmotion{
     width: 100%;
     height: 2in;
 }
+
 
