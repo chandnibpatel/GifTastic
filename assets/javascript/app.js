@@ -4,7 +4,7 @@ var emotions = ["Shocked", "Excited", "Hungry", "Sick"];
       function displayEmotionInfo() {
 
         var emotion = $(this).attr("data-name");
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + emotion + "&api_key=lyTOMzYoWn96srBbhvXyBDBI38ZFKLpB";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + emotion + "&api_key=lyTOMzYoWn96srBbhvXyBDBI38ZFKLpB";
 
         // Creates AJAX call for the specific emotion button being clicked
         $.ajax({
