@@ -38,11 +38,9 @@ button{
 #gifArea {
 	clear: both;
 	display: inline;
-	/* flex-wrap: wrap; */
 }
 .newEmotion{
     position: relative;
-    width: 25%;
     display: inline-block;
     margin: 2%;
     color: white;
@@ -50,6 +48,11 @@ button{
 .imgEmotion{
     width: 100%;
     height: 2in;
+}
+.emotionDet,.emTagRate{
+	background-color: midnightblue;
+	padding-top: 5px;
+	padding-bottom: 5px;  
 }
 
 

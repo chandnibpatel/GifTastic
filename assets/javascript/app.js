@@ -17,13 +17,25 @@ var emotions = ["Shocked", "Excited", "Hungry", "Sick"];
           for (var i=0;i<10;i++)
           {
             var new_Emotion= $("<div>");
-            new_Emotion.addClass("newEmotion");
+            new_Emotion.addClass("newEmotion col-lg-4  col-md-4 col-sm-4 col-xs-12 border");
 
+            var emotionDetails = $("<div>");
+            emotionDetails.addClass("emotionDet text-center");
+
+            var emotionTitle = $("<h6>")
+            console.log("title:" + response.data[i].title);
+            emotionTitle.text(response.data[i].title);
+            
+         
+
+            var emTagRat = $("<div>");
+            emTagRat.addClass("emTagRate text-center");
+        
+            var emotionTag = $("<h6>");
+            emotionTag.text("Tag : #" + emotion);
             var emotionRat= $("<h6>");
-
             console.log(JSON.stringify(response.data[i].rating));
             emotionRat.text("Rating :" + response.data[i].rating);
-        
 
             var emotionImg = $("<img>");
             emotionImg.addClass("imgEmotion");
@@ -32,8 +44,14 @@ var emotions = ["Shocked", "Excited", "Hungry", "Sick"];
             emotionImg.attr("data-still-url",response.data[i].images.fixed_width_still.url);
             emotionImg.attr("data-animated-url",response.data[i].images.fixed_width.url);
 
-            new_Emotion.append(emotionRat);  
+            emotionDetails.append(emotionTitle);
+            emTagRat.append(emotionTag);
+            emTagRat.append(emotionRat);  
+          
+            new_Emotion.append(emotionDetails);
             new_Emotion.append(emotionImg);
+            new_Emotion.append(emTagRat);
+
             $("#gifArea").prepend(new_Emotion);
           }
                  
