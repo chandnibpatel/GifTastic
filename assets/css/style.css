@@ -67,6 +67,9 @@ button{
     float: right;
     width: 10%;
 }
+.addfavourite:hover{
+	background-color: blueviolet;
+}
 .addfavourite::after{
     clear: both;
     content:""; 
