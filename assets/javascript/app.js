@@ -43,7 +43,7 @@ function addGiFDiv(response, emotion) {
     //add favourite GIF
     var favouriteIcon=$("<img src='./assets/images/Favourite.png'>")
     favouriteIcon.addClass("addfavourite");
-    favouriteIcon.attr("data-animatedrl",response.data[i].images.fixed_width.url);
+    favouriteIcon.attr("data-animated-url",response.data[i].images.fixed_width.url);
     favouriteIcon.attr("data-still-url",response.data[i].images.fixed_width_still.url);
     favouriteIcon.attr("data-title",response.data[i].title);
     favouriteIcon.attr("data-tag",emotion);
@@ -176,7 +176,7 @@ function addtofavourite() {
 function addGiphyImage(divName, animatedUrl,stillUrl,title,tag)
 {
     var new_Emotion = $("<div>");
-    new_Emotion.addClass("newEmotion col-lg-12 border");
+    new_Emotion.addClass("newEmotion col-lg-12 col-md-5 border");
     var emotionDetails = $("<div>");
     emotionDetails.addClass("emotionDet text-center");
     

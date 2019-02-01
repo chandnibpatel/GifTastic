@@ -76,3 +76,7 @@ button{
     width: 100%;
     
 }
+#favouriteArea::after{
+	clear: both;
+    content:""; 
+}
