@@ -3,6 +3,7 @@
 //************************************************************************************************************
 
 var emotions = ["Shocked", "Excited", "Hungry", "Sick"];
+var favouriteData =[];
 
 //************************************************************************************************************
 // All the Functions are defined here
@@ -34,10 +35,20 @@ function addGiFDiv(response, emotion) {
   for (var i = 0; i < 10; i++) {
     //adding new elements
     var new_Emotion = $("<div>");
-    new_Emotion.addClass("newEmotion col-lg-3  col-md-3 col-sm-4 col-xs-12 border");
+    new_Emotion.addClass("newEmotion col-lg-5  col-md-5 col-sm-12 col-xs-12 border");
 
     var emotionDetails = $("<div>");
     emotionDetails.addClass("emotionDet text-center");
+    
+    //add favourite GIF
+    var favouriteIcon=$("<img src='./assets/images/Favourite.png'>")
+    favouriteIcon.addClass("addfavourite");
+    favouriteIcon.attr("data-animatedrl",response.data[i].images.fixed_width.url);
+    favouriteIcon.attr("data-still-url",response.data[i].images.fixed_width_still.url);
+    favouriteIcon.attr("data-title",response.data[i].title);
+    favouriteIcon.attr("data-tag",emotion);
+  
+    emotionDetails.append(favouriteIcon);
 
     //add Gif Title
     var emotionTitle = $("<h6>")
@@ -48,6 +59,7 @@ function addGiFDiv(response, emotion) {
     //add Gif Tag
     var emotionTag = $("<h6>");
     emotionTag.text("Tag : #" + emotion);
+    
     //add Gif Rating
     var emotionRat = $("<h6>");
     console.log(JSON.stringify(response.data[i].rating));
@@ -135,6 +147,65 @@ function isduplicate(str){
 function isValidName(str) {
     return str.match(/^[A-Za-z.]+$/g) !== null ;
 }
+//to load favourite image
+function loadfavourite()
+{
+  $("#favouriteArea").empty();
+  for (var i = 0; i < favouriteData.length; i++)
+  {
+    
+    addGiphyImage("favouriteArea",favouriteData[i][0],favouriteData[i][1],favouriteData[i][2],favouriteData[i][3])
+  }
+
+}
+
+//Function to save favourite Gifs.
+function addtofavourite() {
+
+    console.log("In favourite")
+    var animatedUrl = $(this).attr("data-animated-url");
+    var stillUrl = $(this).attr("data-still-url");
+    var title = $(this).attr("data-title");
+    var tag = $(this).attr("data-tag");
+   // data-tag
+    favouriteData.push([animatedUrl,stillUrl,title,tag]);
+    localStorage.setItem('favourite', JSON.stringify(favouriteData));
+    loadfavourite();
+};
+
+function addGiphyImage(divName, animatedUrl,stillUrl,title,tag)
+{
+    var new_Emotion = $("<div>");
+    new_Emotion.addClass("newEmotion col-lg-12 border");
+    var emotionDetails = $("<div>");
+    emotionDetails.addClass("emotionDet text-center");
+    
+    var emotionTitle = $("<h6>")
+    emotionTitle.text(title);
+    var emTagRat = $("<div>");
+    emTagRat.addClass("emTagRate");
+    var emotionTag = $("<h6>");
+    emotionTag.text("Tag : #" +tag );
+   
+   
+    //Add Giphy Still imasge 
+    var emotionImg = $("<img>");
+    emotionImg.addClass("imgEmotion");
+    emotionImg.attr("src", stillUrl);
+
+    //Added still Url and animated url as part of image attribute
+    //So we can interchange when user click on image 
+    emotionImg.attr("data-still-url", stillUrl);
+    emotionImg.attr("data-animated-url", animatedUrl);
+    emotionDetails.append(emotionTitle);
+    // emTagRat.append(downloadBtnDiv);
+    emTagRat.append(emotionTag);
+    
+    new_Emotion.append(emotionDetails);
+    new_Emotion.append(emotionImg);
+    new_Emotion.append(emTagRat);
+    $("#"+divName).prepend(new_Emotion);
+  }
 
 //************************************************************************************************************
 // Main Process Area
@@ -148,12 +219,21 @@ $( document ).ready(function() {
 
     // Calling the renderButtons function to display the intial buttons
      renderButtons() ;
-    
+  }
+
+  if (JSON.parse(localStorage.getItem('favourite'))!=null)
+  {
+    favouriteData=JSON.parse(localStorage.getItem('favourite'));
+  
+    loadfavourite() ;
   }
 });
 
 // Adding click event listeners to all elements with a class of "emotion"
 $(document).on("click", ".emotion", displayEmotionInfo);
+
+// Adding click event listeners to all elements with a class of "addfavourite"
+$(document).on("click",".addfavourite", addtofavourite);
 
 renderButtons();
 

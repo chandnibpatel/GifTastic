@@ -63,3 +63,16 @@ button{
 	clear: both;
 	content:""; 
 }
+.addfavourite{
+    float: right;
+    width: 10%;
+}
+.addfavourite::after{
+    clear: both;
+    content:""; 
+}
+#favouriteArea{
+    float: left;
+    width: 100%;
+    
+}
